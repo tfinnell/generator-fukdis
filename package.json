@@ -10,5 +10,8 @@
     "yeoman-generator"
   ],
   "author": "Tim Finnell",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^0.22.1"
+  }
 }
