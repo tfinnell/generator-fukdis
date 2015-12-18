@@ -1,8 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import withStyles from '../../decorators/withStyles';
-<% if (styles) { %><%- "import styles from './"+classname+".css';" %><% } %>
+<% if (nostyles === false) { -%>
+<%- "import withStyles from '../../decorators/withStyles';" %>
+<%- "import styles from './"+classname+".css';" %>
+<% } -%>
 
-@withStyles(styles)
+<% if (nostyles === false) { -%>
+<%= '@withStyles(styles)' %>
+<% } -%>
 class <%= classname %> extends Component {
   static propTypes {};
   render() {
@@ -13,3 +17,4 @@ class <%= classname %> extends Component {
 }
 
 export default <%= classname %>;
+

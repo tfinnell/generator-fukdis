@@ -1,4 +1,4 @@
-var generators = require('yeoman-generator')
+const generators = require('yeoman-generator')
 
 module.exports = generators.Base.extend({
   constructor: function () {
@@ -6,24 +6,35 @@ module.exports = generators.Base.extend({
 
     this.argument('componentName', { type: String, required: true });
 
-    this.option('stateful', { type: Boolean, desc: 'Toggles whether to generate a stateless or stateful component', defaults: true });
-    this.option('styles', { type: Boolean, desc: 'Toggles whether a stylesheet and decorator is added to the component', defaults: true});
+    this.option('stateless', { type: Boolean, desc: 'Creates a stateless component', defaults: false });
+    this.option('nostyles', { type: Boolean, desc: 'Does not generate styles', defaults: false});
   },
   paths: function () {
   },
-  writing: function () {
+  packageFile: function () {
     this.fs.copyTpl(
         this.templatePath('package.json'),
         this.destinationPath(`src/components/${this.componentName}/package.json`),
-        { packageName: this.componentName }
-        );
+        { packageName: this.componentName });
+  },
+  componentFile: function () {
+    if (this.options.stateless == false) {
+      this.fs.copyTpl(
+        this.templatePath('ExtendedComponent.js'),
+        this.destinationPath(`src/components/${this.componentName}/${this.componentName}.js`),
+        { classname: this.componentName, nostyles: this.options.nostyles });
+      return;
+    }
 
-    this.fs.copyTpl(
-      this.templatePath('ExtendedComponent.js'),
-      this.destinationPath(`src/components/${this.componentName}/${this.componentName}.js`),
-      { classname: this.componentName, styles: this.option.styles });
-
-    if (this.option.styles != false) {
+    if (this.options.stateless == true) {
+      this.fs.copyTpl(
+        this.templatePath('StatelessComponent.js'),
+        this.destinationPath(`src/components/${this.componentName}/${this.componentName}.js`),
+        { constantName: this.componentName });
+    }
+  },
+  styleFile: function () {
+    if (this.options.nostyles == false && this.options.stateless == false) {
       this.fs.copyTpl(
         this.templatePath('ComponentStyles.css'),
         this.destinationPath(`src/components/${this.componentName}/${this.componentName}.css`));

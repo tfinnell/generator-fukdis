@@ -1,5 +1,5 @@
-const <%= componentName %> = () => (
+const <%= constantName %> = () => (
   <div></div>
 );
 
-export default <%= componentName %>;
+export default <%= constantName %>;
