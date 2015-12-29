@@ -8,7 +8,7 @@ import React, { Component, PropTypes } from 'react';
 <%= '@withStyles(styles)' %>
 <% } -%>
 class <%= classname %> extends Component {
-  static propTypes {};
+  static propTypes = {};
   render() {
     return (
       <div></div>
