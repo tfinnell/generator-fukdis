@@ -1,7 +1,7 @@
 {
-  "name": "generator-rsc-component",
+  "name": "generator-fukdis",
   "version": "1.0.0",
-  "description": "Generates React Components for use within react-starter-kit",
+  "description": "Generates the fuck out of React and Flux parts",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
