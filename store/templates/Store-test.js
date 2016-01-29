@@ -1,3 +1,5 @@
+/* eslint no-undef: 0 */
+
 jest.dontMock('<%= `../../constants/${storeName}Constants` %>');
 jest.dontMock('<%= `../${storeName}Store` %>');
 jest.dontMock('object-assign');
@@ -16,6 +18,6 @@ describe('<%= storeName %>Store', () => {
   });
 
   it('registers a callback with the dispatcher', () => {
-    expect(Dispatcher.register.mock.calls.length).toBe(1);
+    expect(AppDispatcher.register.mock.calls.length).toBe(1);
   });
 });
